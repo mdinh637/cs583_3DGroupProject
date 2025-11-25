@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 /*
@@ -17,16 +18,62 @@ public class WaveSpawner : MonoBehaviour
         // when do we want the wave to start?
         // the player should have time to setup defenses
 
-
         // set isRunning to true when player decides or after a timer
+
+        //for testing purposes, start waves automatically 
+        BeginWaves();
 
     }
 
-/* ----- ESSENTIAL FUNCTIONS ----- */
+    public void BeginWaves()
+    {
+        if (isRunning) return;
 
-    // intialize, run and end a wave
+        isRunning = true;
+        StartCoroutine(RunWavesLoop());
+    }
 
-    // pick type of enemy to spawn 
+    /* ----- ESSENTIAL FUNCTIONS ----- */
+
+        // intialize, run and end a wave
+
+        // pick type of enemy to spawn 
+
+    private IEnumerator RunWavesLoop()
+    {
+        while( currWaveIdx < waves.Count && isRunning )
+        {
+            WaveConfig currWave = waves[currWaveIdx];
+            //  run this wave
+            yield return StartCoroutine(RunSingleWave(currWave));
+            // update to next wave 
+            currWaveIdx++;
+
+        }
+        isRunning = false;
+        
+    }
+
+    private IEnumerator RunSingleWave(WaveConfig wave)
+    {
+        yield return new WaitForSeconds(wave.waveDelay);
+
+        // spawn enemy count 
+        for(int i = 0; i < wave.enemyCount; i++)
+        {   
+            //choose spawn point 
+            EnemySpawner spawner = PickSpawnPoint();
+
+            //call from EnemySpawner which only accepts one prefab for now 
+            spawner.SpawnEnemy();
+        }
+    }
+
+    private EnemySpawner PickSpawnPoint()
+    {
+        int index = Random.Range(0, spawnPoints.Count);
+        return spawnPoints[index];
+    }
 
 
 }
