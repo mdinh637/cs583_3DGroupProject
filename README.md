@@ -13,6 +13,6 @@ Wizard tower - Targets ground with a chance to target air at later stages, moder
 
 General Goals:
 Michael Dinh - Programmer, level design, asset implementation
-Nathan F - Asset creation
+Nathan F - Asset creation, animation
 Nicholas S - Asset creation
 Clinton C - Programmer, level design
