@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     //camera rotation
     private float horizontalR; //x rotation
-    private float verticalR;   //y rotation
+    private float verticalR; //y rotation
 
     void Start()
     {
@@ -82,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         verticalR = Mathf.Clamp(verticalR, -maxVerticalAngle, maxVerticalAngle);
 
         //to smooth out rotation
+        //apparently quaternion is good for rotations, used euler angles
+        //the lerp is for smoothing
         Quaternion targetRotation = Quaternion.Euler(verticalR, horizontalR, 0f);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
