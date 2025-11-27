@@ -15,4 +15,4 @@ General Goals:
 Michael Dinh - Programmer, level design, asset implementation
 Nathan F - Asset creation, animation
 Nicholas S - Asset creation
-Clinton C - Programmer, level design
+Clinton D - Programmer, level design
