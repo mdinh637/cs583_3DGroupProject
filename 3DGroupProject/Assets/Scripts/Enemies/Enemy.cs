@@ -17,12 +17,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    // Make enemy move towards the endpoint on startup
-    private void Start()
-    {
-        //agent.SetDestination(waypoint.position);
-    }
-
     private void Update()
     {
         FaceTarget(agent.steeringTarget);
