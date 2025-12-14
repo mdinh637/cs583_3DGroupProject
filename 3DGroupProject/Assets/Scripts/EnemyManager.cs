@@ -11,7 +11,8 @@ public class WaveDetails
 public class EnemyManager : MonoBehaviour
 {
     public List<EnemyPortal> enemyPortals;
-    [SerializeField] private WaveDetails currentWave;
+    [SerializeField] private WaveDetails[] levelWaves;
+    private int waveIndex;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject basicEnemy;
@@ -53,15 +54,16 @@ public class EnemyManager : MonoBehaviour
     private List<GameObject> NewEnemyWave()
     {
         List<GameObject> newEnemyList = new List<GameObject>();
-        for (int i = 0; i < currentWave.basicEnemy; i++)
+        for (int i = 0; i < levelWaves[waveIndex].basicEnemy; i++)
         {
             newEnemyList.Add(basicEnemy);
         }
 
-        for (int i = 0; i < currentWave.fastEnemy; i++)
+        for (int i = 0; i < levelWaves[waveIndex].fastEnemy; i++)
         {
             newEnemyList.Add(fastEnemy);
         }
+        waveIndex++;
         return newEnemyList;
     }
 }
