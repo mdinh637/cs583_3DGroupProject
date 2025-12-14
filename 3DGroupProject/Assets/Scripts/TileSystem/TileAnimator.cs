@@ -14,7 +14,7 @@ public class TileAnimator : MonoBehaviour
         StartCoroutine(MoveTileCo(objectToMove, targetPosition));
     }
 
-    private IEnumerator MoveTileCo(Transform objectToMove, Vector3 targetPosition)
+    public IEnumerator MoveTileCo(Transform objectToMove, Vector3 targetPosition)
     {
         float time = 0;
         Vector3 startPosition = objectToMove.position;
@@ -31,4 +31,5 @@ public class TileAnimator : MonoBehaviour
     }
 
     public float GetBuildOffset() => buildSlotYOffset;
+    public float GetTravelDuration() => yMovementDuration;
 }

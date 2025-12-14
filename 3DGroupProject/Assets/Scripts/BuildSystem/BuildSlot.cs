@@ -10,6 +10,8 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private bool tileCanBeMoved = true;
     // create a reference for TileAnimator
     private TileAnimator tileAnim;
+
+    private Coroutine currentMovementUpCo;
     private void Awake()
     {
         tileAnim = FindFirstObjectByType<TileAnimator>();
@@ -19,9 +21,22 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        
+        // limit select only to lmb 
+        if(eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
+
+        if(buildManager.GetSelectedSlot() == this)
+        {
+            return;
+        }
+
         // log when a tile is clicked
         Debug.Log("Tile was Selected");
-
+        
+        buildManager.EnableBuildMenu(); // needs ui 
         buildManager.SelectBuildSlot(this);
         MoveTileUp();
         // stop tile from moving when selected
@@ -42,7 +57,15 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             return;
         }
-        MoveToDefaultPosition();
+        if(currentMovementUpCo != null)
+        {
+            Invoke(nameof(MoveToDefaultPosition), tileAnim.GetTravelDuration());
+        }
+        else
+        {
+            MoveToDefaultPosition();
+        }
+        
     }
 
     public void UnselectTile()
@@ -55,7 +78,7 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private void MoveTileUp()
     {
         Vector3 targetPosition = transform.position + new Vector3(0, tileAnim.GetBuildOffset(), 0);
-        tileAnim.MoveTile(transform, targetPosition);
+        currentMovementUpCo = StartCoroutine(tileAnim.MoveTileCo(transform, targetPosition));
     }
 
     private void MoveToDefaultPosition()
