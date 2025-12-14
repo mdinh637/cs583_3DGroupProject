@@ -3,14 +3,15 @@ Based on EnemyNavigation branch
 Branch Goals
 Create the scripts to support different types of enemies which include the following: 
 •swarm enemies
-•heavy tank enemy with shield 
+•heavy tank enemy with shield
+  12.14 created a prefab
 •stealth enemy with buffs
 •flying enemy
 
 •flying boss enemy
 •spider boss enemy
 
-VFX
-
+VFX 
+  12.14 added vfx assets
 
 
