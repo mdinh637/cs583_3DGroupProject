@@ -10,45 +10,44 @@ public class WaveDetails
 }
 public class EnemyManager : MonoBehaviour
 {
+    public List<EnemyPortal> enemyPortals;
     [SerializeField] private WaveDetails currentWave;
-    [Space]
-    [SerializeField] private Transform respawn;
-    [SerializeField] public float spawnCooldown;
-    public float spawnTimer;
 
-    private List<GameObject> enemiesToCreate;
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject basicEnemy;
     [SerializeField] private GameObject fastEnemy;
 
     private void Start()
     {
-        enemiesToCreate = NewEnemyWave();
+        SetupNextWave();
     }
-    private void Update()
+    private void Awake()
     {
-        spawnTimer -= Time.deltaTime;
+        enemyPortals = new List<EnemyPortal>(FindObjectsOfType<EnemyPortal>());
+    }
 
-        if (spawnTimer <= 0 && enemiesToCreate.Count > 0)
+    [ContextMenu("Setup Next Wave")]
+
+    private void SetupNextWave()
+    {
+        List<GameObject> newEnemies = NewEnemyWave();
+        int portalIndex = 0;
+
+        // split up enemies into the portals 
+        for(int i = 0; i < newEnemies.Count; i++)
         {
-            CreateEnemy();
-            spawnTimer = spawnCooldown;
+            GameObject enemyToAdd = newEnemies[i];
+            EnemyPortal portalToReceiveEnemy = enemyPortals[portalIndex];
+
+            portalToReceiveEnemy.AddEnemy(enemyToAdd);
+            portalIndex++;
+
+            // make sure enemies are divided to correct amount of portals on field 
+            if(portalIndex >= enemyPortals.Count)
+            {
+                portalIndex = 0;
+            }
         }
-    }
-
-    private void CreateEnemy()
-    {
-        GameObject randomEnemy = GetRandomEnemy();
-        GameObject newEnemy = Instantiate(randomEnemy, respawn.position, Quaternion.identity);
-    }
-
-    private GameObject GetRandomEnemy()
-    {
-        int randomIndex = Random.Range(0, enemiesToCreate.Count);
-        GameObject chosenEnemy = enemiesToCreate[randomIndex];
-
-        enemiesToCreate.Remove(chosenEnemy);
-        return chosenEnemy;
     }
 
     private List<GameObject> NewEnemyWave()
