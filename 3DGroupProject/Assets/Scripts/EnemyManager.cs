@@ -10,7 +10,7 @@ public class WaveDetails
 }
 public class EnemyManager : MonoBehaviour
 {
-    public List<EnemyPortal> enemyPortals;
+    private List<EnemyPortal> enemyPortals;
     [SerializeField] private WaveDetails[] levelWaves;
     private int waveIndex;
 
@@ -34,6 +34,12 @@ public class EnemyManager : MonoBehaviour
         List<GameObject> newEnemies = NewEnemyWave();
         int portalIndex = 0;
 
+        if(newEnemies == null)
+        {
+            Debug.LogWarning("No wave to setup");
+            return;
+        }
+
         // split up enemies into the portals 
         for(int i = 0; i < newEnemies.Count; i++)
         {
@@ -53,6 +59,12 @@ public class EnemyManager : MonoBehaviour
 
     private List<GameObject> NewEnemyWave()
     {
+        // a check to see if all waves have already been completed
+        if(waveIndex >= levelWaves.Length)
+        {
+            //Debug.LogWarning("You have no more waves");
+            return null;
+        }
         List<GameObject> newEnemyList = new List<GameObject>();
         for (int i = 0; i < levelWaves[waveIndex].basicEnemy; i++)
         {
