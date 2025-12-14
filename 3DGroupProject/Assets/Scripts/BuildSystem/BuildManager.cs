@@ -19,7 +19,7 @@ public class BuildManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             // if clicked outside that is not on a build slot, cancel the build action ==> unselect tile and exit build menu
-            if(Physics.RayCast(Camera.main.ScrenPointToRay(Input.mousePosition), out RaycastHit hit))
+            if(Physics.RayCast(Player.main.ScrenPointToRay(Input.mousePosition), out RaycastHit hit))
             {
                 bool clickedNotOnBuildSlot = hit.collider.GetComponent<BuildSlot>() == null;
 
