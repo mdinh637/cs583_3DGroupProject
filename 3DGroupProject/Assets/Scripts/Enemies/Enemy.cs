@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform[] waypoints;
     private int waypointIndex;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         waypoints = FindFirstObjectByType<WaypointManager>().GetWaypoints();
+        
     }
 
     private void Update()
