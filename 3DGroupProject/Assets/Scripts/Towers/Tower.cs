@@ -15,7 +15,12 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float attackRange = 3f;
     [SerializeField] protected Transform rangeOrigin;
     [SerializeField] protected LayerMask whatIsEnemy;
+    private bool canRotate;
 
+    protected virtual void Awake()
+    {
+        
+    }
 
     protected virtual void Update()
     {
@@ -30,7 +35,7 @@ public class Tower : MonoBehaviour
         if (CanAttack()) Attack();
 
         //check if current enemy is still within range
-        if (Vector3.Distance(currentEnemy.position, rangeOrigin.position) > attackRange)
+        if (Vector3.Distance(currentEnemy.position, rangeOrigin.position) > attackRange) 
         {
             currentEnemy = null; //clear current enemy if out of range
             return;
@@ -76,14 +81,24 @@ public class Tower : MonoBehaviour
         return possibleTargets[randomIndex]; //return random enemy transform
     }
 
+    public void EnableRotation(bool enable)
+    {
+        canRotate = enable;
+    }
     protected virtual void RotateTowardsEnemy()
     {
+        if (canRotate == false) return;
         if (currentEnemy == null) return;
 
         Vector3 directonToEnemy = currentEnemy.position - towerHead.position; //calc vector direction of tower aggro to current enemy
         Quaternion lookRotation = Quaternion.LookRotation(directonToEnemy); //calc rotation needed to look at enemy
         Vector3 rotation = Quaternion.Lerp(towerHead.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles; //calc smoothed rotation
         towerHead.rotation = Quaternion.Euler(rotation); //make tower head rotate towards enemy
+    }
+
+    protected Vector3 DirectionToEnemyFrom(Transform startPoint)
+    {
+        return (currentEnemy.position - startPoint.position).normalized;
     }
 
     protected virtual void OnDrawGizmos()
