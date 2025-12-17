@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour , IDamageable
     public Vector3 CenterPoint() => centerPoint.position; //get center point of enemy where turret head will aim at, looks cleaner
     public EnemyType GetEnemyType() => enemyType; //get enemy type for turrts to target
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         //reduce health points by damage amount
         healthPoints = healthPoints - damage;

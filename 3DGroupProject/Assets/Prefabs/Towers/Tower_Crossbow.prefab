@@ -227,17 +227,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Crossbow
   currentEnemy: {fileID: 0}
+  dynamicTargetChange: 1
   attackCooldown: 1
   towerHead: {fileID: 2584684116952689195}
+  gunPoint: {fileID: 6306803821022426109}
   rotationSpeed: 10
   attackRange: 3
   rangeOrigin: {fileID: 8552380249025283201}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  whatIsTargetable:
+    serializedVersion: 2
+    m_Bits: 128
   enemyPriorityType: 2
-  dynamicTargetChange: 1
-  bulletPoint: {fileID: 6306803821022426109}
+  attackSfx: {fileID: 0}
   damage: 1
 --- !u!114 &2751105477499486725
 MonoBehaviour:
@@ -1681,7 +1685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6306803821022426109}
   m_Layer: 0
-  m_Name: BulletOrigin
+  m_Name: GunOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

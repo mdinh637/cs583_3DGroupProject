@@ -5,7 +5,6 @@ public class Tower_Crossbow : Tower
     private Crossbow_Visuals visuals;
 
     [Header("Crossbow Tower Setup")]
-    [SerializeField] private Transform bulletPoint;
     [SerializeField] private int damage;
 
 
@@ -17,16 +16,17 @@ public class Tower_Crossbow : Tower
 
     protected override void Attack()
     {
+        base.Attack(); //call base attack to update last attack time
+
         //check for valid target and bullet point
-        if (currentEnemy == null || bulletPoint == null)
+        if (currentEnemy == null || gunPoint == null)
             return;
 
-        Vector3 directionToEnemy = DirectionToEnemyFrom(bulletPoint);
+        Vector3 directionToEnemy = DirectionToEnemyFrom(gunPoint);
 
-        if (Physics.Raycast(bulletPoint.position, directionToEnemy, out RaycastHit hitInfo, Mathf.Infinity))
+        if (Physics.Raycast(gunPoint.position, directionToEnemy, out RaycastHit hitInfo, Mathf.Infinity, whatIsTargetable))
         {
             towerHead.forward = directionToEnemy; //orient tower head to face enemy and make it look like loading
-            
             Enemy enemyTarget = null;
 
             IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>(); //get IDamageable component from hit object
@@ -38,8 +38,7 @@ public class Tower_Crossbow : Tower
                 enemyTarget = currentEnemy;
             }
             
-            visuals.PlayAttackVFX(bulletPoint.position, hitInfo.point, enemyTarget); //play attack visual
-
+            visuals.PlayAttackVFX(gunPoint.position, hitInfo.point); //play attack visual
         }
     }
 }
