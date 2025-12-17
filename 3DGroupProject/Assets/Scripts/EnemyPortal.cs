@@ -8,9 +8,10 @@ public class EnemyPortal : MonoBehaviour
     [Space]
     [SerializeField] public float spawnCooldown;
     public float spawnTimer;
+    [SerializeField] private Transform spawnPoint;
 
     private List<GameObject> enemiesToCreate = new List<GameObject>();
-
+    private List<GameObject> activeEnemies = new List<GameObject>();
     private void Awake()
     {
         CollectWayPoints();
@@ -39,10 +40,16 @@ public class EnemyPortal : MonoBehaviour
     private void CreateEnemy()
     {
         GameObject randomEnemy = GetRandomEnemy();
-        GameObject newEnemy = Instantiate(randomEnemy, transform.position, Quaternion.identity);
+        // changed it so enemies spawn on the mesh
+        // if spawn on portal, they wont move
+        // need to add a child Waypoint for every portal in front on the road
+        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : transform.position;
+        GameObject newEnemy = Instantiate(randomEnemy, spawnPos, Quaternion.identity);
 
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-        enemyScript.SetupEnemy(waypointList);
+        enemyScript.SetupEnemy(waypointList, this);
+
+        activeEnemies.Add(newEnemy);
     }
 
     private GameObject GetRandomEnemy()
@@ -55,6 +62,14 @@ public class EnemyPortal : MonoBehaviour
     }
 
     public void AddEnemy(GameObject enemyToAdd) => enemiesToCreate.Add(enemyToAdd);
+    public List<GameObject> GetActiveEnemies() => activeEnemies;
+    public void RemoveActiveEnemy(GameObject enemyToRemove)
+    {
+        if(activeEnemies.Contains(enemyToRemove))
+        {
+            activeEnemies.Remove(enemyToRemove);
+        }
+    }
 
     private void CollectWayPoints()
     {
@@ -70,4 +85,10 @@ public class EnemyPortal : MonoBehaviour
             }
         }
     }
+// a check useful for dynamically changing levels
+    public bool HasEnemiesRemaining()
+{
+    // true if there is anything still queued OR alive
+    return enemiesToCreate.Count > 0 || activeEnemies.Count > 0;
+}
 }

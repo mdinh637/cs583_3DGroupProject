@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public enum EnemyType { Basic, Fast, None}
+public class Enemy : MonoBehaviour, IDamagable
 {
     private NavMeshAgent agent;
 
+    [SerializeField] private Transform centerPoint;
+    [SerializeField] private EnemyType enemyType;
     [SerializeField] private float turnSpeed = 10;
     [SerializeField] private List<Transform> myWaypoints;
     private int nextWaypointIndex;
     public float totalDistance;
     private int currentWaypointIndex;
+    private EnemyPortal myPortal;
+    private float healthPoints = 10f;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
-
     }
 
-    public void SetupEnemy(List<Waypoint> newWaypoints)
+    public void SetupEnemy(List<Waypoint> newWaypoints, EnemyPortal myNewPortal)
     {
         myWaypoints = new List<Transform>();
         foreach(var point in newWaypoints)
@@ -30,6 +34,8 @@ public class Enemy : MonoBehaviour
         }
 
         CollectTotalDistance();
+
+        myPortal = myNewPortal;
     }
 
     private void Update()
@@ -44,24 +50,20 @@ public class Enemy : MonoBehaviour
 
     private bool ShouldChangeWaypoint()
     {
-        if(nextWaypointIndex >= myWaypoints.Count)
-        {
+        if (nextWaypointIndex >= myWaypoints.Count)
             return false;
-        }
 
-        if(agent.remainingDistance < 0.5f)
-        {
+        if (agent.remainingDistance < .5f)
             return true;
-        }
 
         Vector3 currentWaypoint = myWaypoints[currentWaypointIndex].position;
-        Vector3 nextWaypoint = myWaypoints[nextWaypointIndex-1].position;
+        Vector3 nextWaypoint = myWaypoints[nextWaypointIndex].position;
 
         float distanceToNextWaypoint = Vector3.Distance(transform.position, nextWaypoint);
-        float distanceBetweenPoints = Vector3.Distance(currentWaypoint, nextWaypoint);
+        float distnaceBeetwenPoints = Vector3.Distance(currentWaypoint, nextWaypoint);
 
-        return distanceBetweenPoints > distanceToNextWaypoint;
-
+        
+        return distnaceBeetwenPoints > distanceToNextWaypoint;
     }
 
     // Rotate enemy to face the target waypoint
@@ -110,5 +112,23 @@ public class Enemy : MonoBehaviour
             float distance = Vector3.Distance(myWaypoints[i].position, myWaypoints[i + 1].position);
             totalDistance = totalDistance + distance;
         }
+    }
+
+    public Vector3 CenterPoint() => centerPoint.position;
+    public EnemyType GetEnemyType() => enemyType;
+
+    public void TakeDamage(int damage)
+    {
+        healthPoints = healthPoints - damage;
+        if(healthPoints <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        myPortal.RemoveActiveEnemy(gameObject);
+        Destroy(gameObject);
     }
 }
