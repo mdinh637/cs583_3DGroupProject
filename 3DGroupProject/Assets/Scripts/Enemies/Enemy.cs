@@ -1,13 +1,24 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public enum EnemyType
+{
+    Basic, Fast, None, Tanky
+}
+public class Enemy : MonoBehaviour , IDamageable
 {
     private NavMeshAgent agent;
 
+    public int healthPoints = 2;
+
+    [SerializeField] private Transform centerPoint;
+    [SerializeField] private EnemyType enemyType;
+
+    [Header("Movement Settings")]
     [SerializeField] private float turnSpeed = 10;
     [SerializeField] private Transform[] waypoints;
     private int waypointIndex;
+    private float totalDistance;
 
     private void Awake()
     {
@@ -20,6 +31,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         waypoints = FindFirstObjectByType<WaypointManager>().GetWaypoints();
+
+        CollectTotalDistance();
     }
 
     private void Update()
@@ -55,8 +68,53 @@ public class Enemy : MonoBehaviour
             return transform.position;
         }
         Vector3 targetPoint = waypoints[waypointIndex].position;
+
+        //if waypoint index is greater than 0, calculate distance between current and previous waypoint
+        if (waypointIndex > 0)
+        {
+            float distance = Vector3.Distance(waypoints[waypointIndex].position, waypoints[waypointIndex -1].position);
+            totalDistance -= distance; //reduce total distance as waypoints are reached
+        }
+
         waypointIndex++;
 
         return targetPoint;
+    }
+
+    public Vector3 CenterPoint() => centerPoint.position; //get center point of enemy where turret head will aim at, looks cleaner
+    public EnemyType GetEnemyType() => enemyType; //get enemy type for turrts to target
+
+    public void TakeDamage(int damage)
+    {
+        //reduce health points by damage amount
+        healthPoints = healthPoints - damage;
+
+        //destroy enemy if health points are 0 or less, mimics killing them
+        if (healthPoints <= 0) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public float DistanceToFinishLine()
+    {
+        //if agent is null, return max value
+        if (agent == null)
+            return float.MaxValue;
+        //if agent isnt active or on navmesh or has no path, return max value
+        if (!agent.enabled || !agent.isOnNavMesh || !agent.hasPath)
+            return float.MaxValue;
+
+        return totalDistance + agent.remainingDistance; //return sum of total distance and remaining distance to next waypoint
+    }
+
+    private void CollectTotalDistance()
+    {
+        //sets initial spot of waypoint
+        for (int i = 0; i < waypoints.Length - 1; i++)
+        {
+            float distance = Vector3.Distance(waypoints[i].position, waypoints[i + 1].position);
+            totalDistance += distance; //sum up total distance for all waypoints
+        }
     }
 }

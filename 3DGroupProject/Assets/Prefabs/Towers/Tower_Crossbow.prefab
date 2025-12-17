@@ -235,7 +235,10 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  enemyPriorityType: 2
+  dynamicTargetChange: 1
   bulletPoint: {fileID: 6306803821022426109}
+  damage: 1
 --- !u!114 &2751105477499486725
 MonoBehaviour:
   m_ObjectHideFlags: 0
