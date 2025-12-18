@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,18 +10,21 @@ public enum EnemyType
 public class Enemy : MonoBehaviour , IDamageable
 {
     private GameManager gameManager;
+    private EnemyPortal myPortal;
     private NavMeshAgent agent;
 
     public int healthPoints = 2;
 
     [SerializeField] private Transform centerPoint;
     [SerializeField] private EnemyType enemyType;
+    
 
     [Header("Movement Settings")]
     [SerializeField] private float turnSpeed = 10;
-    [SerializeField] private Transform[] waypoints;
-    private int waypointIndex;
+    [SerializeField] private List<Transform> myWaypoints;
+    private int nextWaypointIndex;
     private float totalDistance;
+    private int currentWaypointIndex;
 
     private void Awake()
     {
@@ -30,11 +35,25 @@ public class Enemy : MonoBehaviour , IDamageable
         gameManager = FindFirstObjectByType<GameManager>();
     }
 
-    private void Start()
+    // private void Start()
+    // {
+    //     myWaypoints = FindFirstObjectByType<WaypointManager>().GetmyWaypoints();
+
+    //     CollectTotalDistance();
+    // }
+
+    public void SetupEnemy(List<Waypoint> newmyWaypoints,EnemyPortal myNewPortal)
     {
-        waypoints = FindFirstObjectByType<WaypointManager>().GetWaypoints();
+        myWaypoints = new List<Transform>();
+
+        foreach (var point in newmyWaypoints)
+        {
+            myWaypoints.Add(point.transform);
+        }
 
         CollectTotalDistance();
+
+        myPortal = myNewPortal;
     }
 
     private void Update()
@@ -46,6 +65,26 @@ public class Enemy : MonoBehaviour , IDamageable
             agent.SetDestination(GetNextWaypoint());
         }
     }
+
+    private bool ShouldChangeWaypoint()
+    {
+        if (nextWaypointIndex >= myWaypoints.Count)
+            return false;
+
+        if (agent.remainingDistance < .5f)
+            return true;
+
+        Vector3 currentWaypoint = myWaypoints[currentWaypointIndex].position;
+        Vector3 nextWaypoint = myWaypoints[nextWaypointIndex].position;
+
+        float distanceToNextWaypoint = Vector3.Distance(transform.position, nextWaypoint);
+        float distanceBetweenPoints = Vector3.Distance(currentWaypoint, nextWaypoint);
+
+        
+        return distanceBetweenPoints > distanceToNextWaypoint;
+    }
+
+    //public float DistanceToFinishLine() => totalDistance + agent.remainingDistance;
 
     // Rotate enemy to face the target waypoint
     private void FaceTarget(Vector3 newTarget)
@@ -62,23 +101,23 @@ public class Enemy : MonoBehaviour , IDamageable
 
     }
 
-    // Move through the waypoints on the map
+    // Move through the myWaypoints on the map
     private Vector3 GetNextWaypoint()
     {
-        if (waypointIndex >= waypoints.Length)
+        if (nextWaypointIndex >= myWaypoints.Count)
         {
             return transform.position;
         }
-        Vector3 targetPoint = waypoints[waypointIndex].position;
+        Vector3 targetPoint = myWaypoints[nextWaypointIndex].position;
 
         //if waypoint index is greater than 0, calculate distance between current and previous waypoint
-        if (waypointIndex > 0)
+        if (nextWaypointIndex > 0)
         {
-            float distance = Vector3.Distance(waypoints[waypointIndex].position, waypoints[waypointIndex -1].position);
-            totalDistance -= distance; //reduce total distance as waypoints are reached
+            float distance = Vector3.Distance(myWaypoints[nextWaypointIndex].position, myWaypoints[nextWaypointIndex -1].position);
+            totalDistance -= distance; //reduce total distance as myWaypoints are reached
         }
 
-        waypointIndex++;
+        nextWaypointIndex++;
 
         return targetPoint;
     }
@@ -113,10 +152,10 @@ public class Enemy : MonoBehaviour , IDamageable
     private void CollectTotalDistance()
     {
         //sets initial spot of waypoint
-        for (int i = 0; i < waypoints.Length - 1; i++)
+        for (int i = 0; i < myWaypoints.Count - 1; i++)
         {
-            float distance = Vector3.Distance(waypoints[i].position, waypoints[i + 1].position);
-            totalDistance += distance; //sum up total distance for all waypoints
+            float distance = Vector3.Distance(myWaypoints[i].position, myWaypoints[i + 1].position);
+            totalDistance += distance; //sum up total distance for all myWaypoints
         }
     }
 

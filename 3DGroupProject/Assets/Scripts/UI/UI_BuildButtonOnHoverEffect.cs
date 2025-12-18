@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BuildButtonOnHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UI_BuildButtonOnHoverEffect : MonoBehaviour
 {
-    [SerializeField] private float adjustmentSpeed = 10;
+    [SerializeField] private float adjustmnetSpeed = 10;
 
     [SerializeField] private float showcaseY;
     [SerializeField] private float defaultY;
@@ -13,10 +14,9 @@ public class UI_BuildButtonOnHoverEffect : MonoBehaviour, IPointerEnterHandler, 
 
     private void Update()
     {
-        if(Mathf.Abs(transform.position.y - targetY) > 0.01f && canMove)
+        if (Mathf.Abs(transform.position.y - targetY) > .01f && canMove)
         {
-            float newPositionY = Mathf.Lerp(transform.position.y, targetY, Time.deltaTime * adjustmentSpeed);
-
+            float newPositionY = Mathf.Lerp(transform.position.y, targetY, adjustmnetSpeed * Time.deltaTime);
             transform.position = new Vector3(transform.position.x, newPositionY, transform.position.z);
         }
     }
@@ -26,13 +26,22 @@ public class UI_BuildButtonOnHoverEffect : MonoBehaviour, IPointerEnterHandler, 
         canMove = buttonsMenuActive;
         SetTargetY(defaultY);
 
-        if(buttonsMenuActive == false)
+        if (buttonsMenuActive == false)
             SetPositionToDefault();
     }
 
-    private void SetPositionToDefault() => transform.position = new Vector3(transform.position.x, defaultY, transform.position.z);
+    private void SetPositionToDefault()
+    {
+        transform.position = new Vector3(transform.position.x, defaultY, transform.position.z);
+    }
 
     private void SetTargetY(float newY) => targetY = newY;
-    public void OnPointerEnter(PointerEventData eventData) => SetTargetY(showcaseY);
-    public void OnPointerExit(PointerEventData eventData) => SetTargetY(defaultY);
+
+    public void ShowcaseButton(bool showcase)
+    {
+        if (showcase)
+            SetTargetY(showcaseY);
+        else
+            SetTargetY(defaultY);
+    }
 }

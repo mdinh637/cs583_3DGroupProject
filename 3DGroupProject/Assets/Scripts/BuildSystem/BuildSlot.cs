@@ -54,7 +54,7 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         // log when a tile is clicked
         Debug.Log("Tile was Selected");
         
-        buildManager.EnableBuildMenu(); // needs ui 
+        buildManager.EnableBuildMenu();
         buildManager.SelectBuildSlot(this);
         MoveTileUp();
         // stop tile from moving when selected

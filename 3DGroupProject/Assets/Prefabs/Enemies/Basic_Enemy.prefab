@@ -164,13 +164,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361786843398455710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6587c1050d877434ca82ee58f476616a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b750449a5999c5438b6aa1fe02e33a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  healthPoints: 1
+  healthPoints: 2
   centerPoint: {fileID: 4714765389662093549}
-  turnSpeed: 7
-  waypoints: []
+  enemyType: 0
+  turnSpeed: 10
+  myWaypoints: []
 --- !u!65 &8816226446578323825
 BoxCollider:
   m_ObjectHideFlags: 0
