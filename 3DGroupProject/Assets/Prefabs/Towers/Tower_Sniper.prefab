@@ -547,6 +547,8 @@ GameObject:
   - component: {fileID: 2923382951657992287}
   - component: {fileID: 3462928951969702628}
   - component: {fileID: 2937216815045150920}
+  - component: {fileID: -1935563871070930412}
+  - component: {fileID: 1795347842847831731}
   m_Layer: 8
   m_Name: Tower_Sniper
   m_TagString: Untagged
@@ -586,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Crossbow
   currentEnemy: {fileID: 0}
   dynamicTargetChange: 1
-  attackCooldown: 3
+  attackCooldown: 4.5
   towerHead: {fileID: 678749556810977580}
   towerBody: {fileID: 0}
   gunPoint: {fileID: 5311170079054919195}
@@ -601,7 +603,7 @@ MonoBehaviour:
     m_Bits: 128
   enemyPriorityType: 3
   attackSfx: {fileID: 3462928951969702628}
-  damage: 25
+  damage: 15
 --- !u!114 &2923382951657992287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +812,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &-1935563871070930412
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145217723725858062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0.14, y: -1.5, z: 0}
+--- !u!135 &1795347842847831731
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145217723725858062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1240868077913291987
 GameObject:
   m_ObjectHideFlags: 0
