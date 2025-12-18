@@ -60,6 +60,8 @@ public class CameraController : MonoBehaviour
 
     public void EnableCameraControls(bool enable) => canControl = enable;
     public float AdjustPitchValue(float value) => pitch = value;
+    public float AdjustKeyboardSensitivity(float value) => movementSpeed = value;
+    public float AdjustMouseSensitivity(float value) => mouseMovementSpeed = value;
 
     private void HandleZoom()
     {
