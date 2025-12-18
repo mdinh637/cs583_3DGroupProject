@@ -98,6 +98,11 @@ public class Tower : MonoBehaviour
     protected virtual void Attack()
     {
         lastTimeAttacked = Time.time; //update last attack time
+
+        if (attackSfx != null)
+        {
+            attackSfx.Play(); //play attack sfx
+        }
     }
 
     protected bool CanAttack()
