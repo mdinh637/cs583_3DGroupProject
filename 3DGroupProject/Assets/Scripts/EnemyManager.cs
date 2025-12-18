@@ -10,7 +10,6 @@ public class WaveDetails
 }
 public class EnemyManager : MonoBehaviour
 {
-    private GameManager gameManager;    // Section 9 Addition
     [SerializeField] private WaveDetails currentWave;
     [Space]
     [SerializeField] private Transform respawn;
@@ -22,11 +21,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject basicEnemy;
     [SerializeField] private GameObject fastEnemy;
 
-    private void Awake()
-    {
-
-        gameManager = FindAnyObjectByType<GameManager>(); // Section 9 Addition
-    }
     private void Start()
     {
         enemiesToCreate = NewEnemyWave();
@@ -71,27 +65,4 @@ public class EnemyManager : MonoBehaviour
         }
         return newEnemyList;
     }
-
-    //public void TakeDamage(int damage)  // Section 9 Addition
-    //{
-    //    healthPoints = healthPoints - damage;
-
-    //    if(healthPoints <= 0)
-    //    {
-    //        Die();
-    //    }
-    //}
-    
-    //public void Die()   Section 9 Addition
-    //{
-    //    myPortal.RemoveActiveEnemy(gameObject);
-    //    gameManager.UpdateCurrency(1);
-    //    Destroy(gameObject);
-    //}
-
-    //public void DestroyEnemy()   Section 9 Addition - Instance of enemy reaching castle (no reward)
-    //{
-    //    myPortal.RemoveActiveEnemy(gameObject);
-    //    Destroy(gameObject);
-    //}
 }
