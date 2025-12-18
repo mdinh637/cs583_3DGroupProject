@@ -169,6 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   healthPoints: 1
   centerPoint: {fileID: 4714765389662093549}
+  enemyType: 0
+  deathSFX: {fileID: 8300000, guid: 15ddcef0d26ccb545a614c688cc7fd79, type: 3}
+  deathVolume: 1
   turnSpeed: 7
   waypoints: []
 --- !u!65 &8816226446578323825

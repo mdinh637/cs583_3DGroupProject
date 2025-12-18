@@ -5,7 +5,8 @@ public enum EnemyType
 {
     Basic, Fast, None, Tanky
 }
-public class Enemy : MonoBehaviour , IDamageable
+
+public class Enemy : MonoBehaviour, IDamageable
 {
     private NavMeshAgent agent;
 
@@ -13,6 +14,10 @@ public class Enemy : MonoBehaviour , IDamageable
 
     [SerializeField] private Transform centerPoint;
     [SerializeField] private EnemyType enemyType;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip deathSFX; //sound played when enemy dies
+    [SerializeField] private float deathVolume = 1f; //volume of death sound
 
     [Header("Movement Settings")]
     [SerializeField] private float turnSpeed = 10;
@@ -25,19 +30,18 @@ public class Enemy : MonoBehaviour , IDamageable
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
-
     }
 
     private void Start()
     {
         waypoints = FindFirstObjectByType<WaypointManager>().GetWaypoints();
-
         CollectTotalDistance();
     }
 
     private void Update()
     {
         FaceTarget(agent.steeringTarget);
+
         // Check whether enemy is close to the current target waypoint
         if (agent.remainingDistance < 0.5f)
         {
@@ -56,8 +60,7 @@ public class Enemy : MonoBehaviour , IDamageable
         Quaternion newRotation = Quaternion.LookRotation(directionToTarget);
 
         // Smoothly rotate from current rotation to the new rotation at the defined speed
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime); 
-
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
     }
 
     // Move through the waypoints on the map
@@ -67,17 +70,21 @@ public class Enemy : MonoBehaviour , IDamageable
         {
             return transform.position;
         }
+
         Vector3 targetPoint = waypoints[waypointIndex].position;
 
         //if waypoint index is greater than 0, calculate distance between current and previous waypoint
         if (waypointIndex > 0)
         {
-            float distance = Vector3.Distance(waypoints[waypointIndex].position, waypoints[waypointIndex -1].position);
+            float distance = Vector3.Distance(
+                waypoints[waypointIndex].position,
+                waypoints[waypointIndex - 1].position
+            );
+
             totalDistance -= distance; //reduce total distance as waypoints are reached
         }
 
         waypointIndex++;
-
         return targetPoint;
     }
 
@@ -90,8 +97,14 @@ public class Enemy : MonoBehaviour , IDamageable
         healthPoints = healthPoints - damage;
 
         //destroy enemy if health points are 0 or less, mimics killing them
-        if (healthPoints <= 0) 
+        if (healthPoints <= 0)
         {
+            //play death sound at enemy position
+            if (deathSFX != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSFX, transform.position, deathVolume);
+            }
+
             Destroy(gameObject);
         }
     }
@@ -101,6 +114,7 @@ public class Enemy : MonoBehaviour , IDamageable
         //if agent is null, return max value
         if (agent == null)
             return float.MaxValue;
+
         //if agent isnt active or on navmesh or has no path, return max value
         if (!agent.enabled || !agent.isOnNavMesh || !agent.hasPath)
             return float.MaxValue;
@@ -118,3 +132,4 @@ public class Enemy : MonoBehaviour , IDamageable
         }
     }
 }
+

@@ -172,6 +172,8 @@ MonoBehaviour:
   healthPoints: 75
   centerPoint: {fileID: 3388775288079873027}
   enemyType: 3
+  deathSFX: {fileID: 8300000, guid: 15ddcef0d26ccb545a614c688cc7fd79, type: 3}
+  deathVolume: 1
   turnSpeed: 7
   waypoints: []
 --- !u!65 &9070712275092144103
