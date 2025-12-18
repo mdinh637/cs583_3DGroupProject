@@ -20,4 +20,10 @@ public class UI_InGame : MonoBehaviour
     }
 
     public void UpdateWaveTimerUI(float value) => waveTimerText.text = "seconds: " + value.ToString("00");
+    public void EnableWaveTimerUI(bool enable) => waveTimerText.transform.parent.gameObject.SetActive(enable);
+    public void ForceWaveButton()
+    {
+        WaveManager waveManager = FindFirstObjectByType<WaveManager>();
+        waveManager.ForceNextWave();
+    }
 }
