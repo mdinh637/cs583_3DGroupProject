@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2679604524547470451}
   - component: {fileID: 3442239910958717659}
   - component: {fileID: 5717646696575881492}
-  - component: {fileID: 2028163594840245239}
   m_Layer: 7
   m_Name: Fast_Enemy
   m_TagString: Enemy
@@ -71,11 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6587c1050d877434ca82ee58f476616a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  centerPoint: {fileID: 0}
-  enemyType: 0
   turnSpeed: 7
-  myWaypoints: []
-  totalDistance: 0
+  waypoints: []
 --- !u!65 &3442239910958717659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,23 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2028163594840245239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67629254683796888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87dc0c482b1ea454cb3710576b888f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyVisuals
-  visuals: {fileID: 8495342871213012237}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  verticalRotationSpeed: 1
 --- !u!1 &70686544391329307
 GameObject:
   m_ObjectHideFlags: 0

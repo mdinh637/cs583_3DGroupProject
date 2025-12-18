@@ -9,28 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.97
+      value: -0.91531
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.61
+      value: -1.32566
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,35 +52,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: archer_tower_LVL_1_rig
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3939323125825336622}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
---- !u!1 &7578676946542444995 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 94d5aefe94494ce4b88751338a18b23a, type: 3}
-  m_PrefabInstance: {fileID: 7344728149019065490}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3939323125825336622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578676946542444995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4d60934084701469445922faf0b0a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ArcherAttackLogic
-  projectileDmg: 1
-  atkRange: 3.5
-  atkSpd: 1
