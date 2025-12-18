@@ -215,4 +215,6 @@ public class WaveManager : MonoBehaviour
 
         return true;
     }
+
+    public WaveDetails[] GetLevelWaves() => levelWaves;
 }
