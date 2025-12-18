@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//using this script for sniper and rapidfire tower as well since logic is very similar
 public class Tower_Crossbow : Tower
 {
     private Crossbow_Visuals visuals;

@@ -48,6 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c91c925ca556e640a43219dc9a90a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile_Cannon
+  damageRadius: 2
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 0
 --- !u!33 &8373664285979685018
 MeshFilter:
   m_ObjectHideFlags: 0

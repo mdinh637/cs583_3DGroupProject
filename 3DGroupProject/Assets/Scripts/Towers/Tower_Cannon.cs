@@ -7,6 +7,7 @@ public class Tower_Cannon : Tower
     [Header("Cannon Tower Setup")]
     [SerializeField] private float timeToTarget = 1.5f; //time for projectile to reach target
     [SerializeField] private GameObject projectilePrefab; //projectile prefab to spawn when attacking
+    [SerializeField] private float damage; //damage dealt by projectile
 
     protected override void Attack()
     {
@@ -14,7 +15,7 @@ public class Tower_Cannon : Tower
 
         Vector3 velocity = CalculateLaunchVelocity(); //calculate launch velocity needed to hit enemy
         GameObject newProjectile = Instantiate(projectilePrefab, gunPoint.position, Quaternion.identity); //spawn projectile at gun point
-        newProjectile.GetComponent<Projectile_Cannon>().SetupProjectile(velocity); //setup projectile with launch velocity
+        newProjectile.GetComponent<Projectile_Cannon>().SetupProjectile(velocity, damage); //setup projectile with launch velocity
     }
 
     protected override Enemy FindEnemyWithinRange()
