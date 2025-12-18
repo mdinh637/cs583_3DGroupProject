@@ -167,6 +167,7 @@ public class Enemy : MonoBehaviour , IDamageable
 
     public void DestroyEnemy()
     {
+        myPortal.RemoveActiveEnemy(gameObject);
         Destroy(gameObject);
     }
 }

@@ -20,6 +20,7 @@ public class EnemyPortal : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Portal running. Queue: " + enemiesToCreate.Count);
         if(CanMakeNewEnemy())
         {
             CreateEnemy();
@@ -40,11 +41,7 @@ public class EnemyPortal : MonoBehaviour
     private void CreateEnemy()
     {
         GameObject randomEnemy = GetRandomEnemy();
-        // changed it so enemies spawn on the mesh
-        // if spawn on portal, they wont move
-        // need to add a child Waypoint for every portal in front on the road
-        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : transform.position;
-        GameObject newEnemy = Instantiate(randomEnemy, spawnPos, Quaternion.identity);
+        GameObject newEnemy = Instantiate(randomEnemy, transform.position, Quaternion.identity);
 
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
         enemyScript.SetupEnemy(waypointList, this);
