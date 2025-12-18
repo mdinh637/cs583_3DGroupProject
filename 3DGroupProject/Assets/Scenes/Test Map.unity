@@ -2050,12 +2050,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c011d6e171c3f942b134645b78f2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentWave:
-    basicEnemy: 4
-    fastEnemy: 2
-  respawn: {fileID: 0}
-  spawnCooldown: 1
-  spawnTimer: 0
+  currentGrid: {fileID: 0}
+  waveCompleted: 0
+  timeBetweenWaves: 10
+  waveTimer: 0
+  levelWaves: []
   basicEnemy: {fileID: 1361786843398455710, guid: 77f88ccb7c538e14eb46f520f016f1d7, type: 3}
   fastEnemy: {fileID: 67629254683796888, guid: dbbd5a49280230c45b8294749b520dd3, type: 3}
 --- !u!4 &351233889
@@ -4162,6 +4161,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1024611379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024611380}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1024611380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024611379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.19476, y: 0, z: 10.51762}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075846206
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,3 +9416,4 @@ SceneRoots:
   - {fileID: 974030234}
   - {fileID: 777258168}
   - {fileID: 1550240985}
+  - {fileID: 1024611380}
