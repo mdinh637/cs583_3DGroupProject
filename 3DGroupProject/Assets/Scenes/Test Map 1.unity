@@ -12659,6 +12659,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonBall
       objectReference: {fileID: 0}
+    - target: {fileID: 2308029307835727916, guid: d95076c0891dc044782603535be3a9b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9153866894229125078, guid: d95076c0891dc044782603535be3a9b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.434
@@ -12831,6 +12835,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1320905637}
+  - {fileID: 1758052734}
   - {fileID: 314998081}
   - {fileID: 856968996}
   - {fileID: 1086268397}
@@ -12843,7 +12848,6 @@ SceneRoots:
   - {fileID: 5058097938411061328}
   - {fileID: 6328778068096579118}
   - {fileID: 5685641448503342241}
-  - {fileID: 1758052734}
   - {fileID: 639588945}
   - {fileID: 33858059}
   - {fileID: 1607200128}
