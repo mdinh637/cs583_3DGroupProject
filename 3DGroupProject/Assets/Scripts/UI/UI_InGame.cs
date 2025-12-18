@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UI_InGame : MonoBehaviour
 {
+    private UI ui;
+    private UI_Pause pauseUI;
     private UI_Animator uiAnimator;
     [SerializeField] private TextMeshProUGUI healthPointsText;
     [SerializeField] private TextMeshProUGUI currencyText;
@@ -12,6 +14,16 @@ public class UI_InGame : MonoBehaviour
     private void Awake()
     {
         uiAnimator = GetComponent<UI_Animator>();
+        ui = GetComponentInParent<UI>();
+        pauseUI = GetComponentInChildren<UI_Pause>(true);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ui.SwitchTo(pauseUI.gameObject);
+        }
     }
 
     public void UpdateHealthPointsUI(int value, int maxValue)

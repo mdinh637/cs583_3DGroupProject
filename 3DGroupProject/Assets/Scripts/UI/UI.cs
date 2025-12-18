@@ -5,19 +5,19 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject[] uiElements;
 
-    private UI_Settings uiSettings;
-    private UI_MainMenu uiMainMenu;
-    private UI_InGame uiInGame;
+    private UI_Settings settingsUI;
+    private UI_MainMenu mainMenuUI;
+    private UI_InGame inGameUI;
 
     private void Awake()
     {
-        uiSettings = GetComponentInChildren<UI_Settings>(true);
-        uiMainMenu = GetComponentInChildren<UI_MainMenu>(true);
-        uiInGame = GetComponentInChildren<UI_InGame>(true);
+        settingsUI = GetComponentInChildren<UI_Settings>(true);
+        mainMenuUI = GetComponentInChildren<UI_MainMenu>(true);
+        inGameUI = GetComponentInChildren<UI_InGame>(true);
 
-        SwitchTo(uiSettings.gameObject);
-        //SwitchTo(uiMainMenu.gameObject);
-        SwitchTo(uiInGame.gameObject);
+        SwitchTo(settingsUI.gameObject);
+        SwitchTo(mainMenuUI.gameObject);
+        //SwitchTo(inGameUI.gameObject);
     }
 
     public void SwitchTo(GameObject uiToEnable)
