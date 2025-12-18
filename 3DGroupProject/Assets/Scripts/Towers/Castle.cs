@@ -9,7 +9,7 @@ public class Castle : MonoBehaviour
         {
             Destroy(other.gameObject);
             if(gameManager == null)
-                gameManager = FindObjectOfType<GameManager>();
+                gameManager = FindAnyObjectByType<GameManager>();
 
             if(gameManager != null)
                 gameManager.UpdateHp(-1);
