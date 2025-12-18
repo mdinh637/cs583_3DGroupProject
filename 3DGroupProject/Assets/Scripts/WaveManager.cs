@@ -2,14 +2,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class WaveDetails
-{
-    public GridBuilder nextGrid; // for creating dynamically changing layouts
-    public EnemyPortal[] newPortals; 
-    public int basicEnemy;
-    public int fastEnemy;
-}
 public class WaveManager : MonoBehaviour
 {
     private UI_InGame inGameUI;

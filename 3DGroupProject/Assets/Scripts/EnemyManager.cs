@@ -2,12 +2,6 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class WaveDetails
-{
-    public int basicEnemy;
-    public int fastEnemy;
-}
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private WaveDetails currentWave;
