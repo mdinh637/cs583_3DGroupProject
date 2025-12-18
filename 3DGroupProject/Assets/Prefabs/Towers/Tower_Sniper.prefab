@@ -599,9 +599,9 @@ MonoBehaviour:
   whatIsTargetable:
     serializedVersion: 2
     m_Bits: 128
-  enemyPriorityType: 2
+  enemyPriorityType: 3
   attackSfx: {fileID: 3462928951969702628}
-  damage: 10
+  damage: 25
 --- !u!114 &2923382951657992287
 MonoBehaviour:
   m_ObjectHideFlags: 0

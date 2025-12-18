@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Crossbow
   currentEnemy: {fileID: 0}
   dynamicTargetChange: 1
-  attackCooldown: 0.25
+  attackCooldown: 0.2
   towerHead: {fileID: 6710529295453305839}
   towerBody: {fileID: 0}
   gunPoint: {fileID: 5013029023342090226}

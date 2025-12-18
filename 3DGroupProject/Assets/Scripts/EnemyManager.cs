@@ -7,6 +7,7 @@ public class WaveDetails
 {
     public int basicEnemy;
     public int fastEnemy;
+    public int tankyEnemy;
 }
 public class EnemyManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject basicEnemy;
     [SerializeField] private GameObject fastEnemy;
+    [SerializeField] private GameObject tankyEnemy;
 
     private void Start()
     {
@@ -54,6 +56,7 @@ public class EnemyManager : MonoBehaviour
     private List<GameObject> NewEnemyWave()
     {
         List<GameObject> newEnemyList = new List<GameObject>();
+
         for (int i = 0; i < currentWave.basicEnemy; i++)
         {
             newEnemyList.Add(basicEnemy);
@@ -63,6 +66,12 @@ public class EnemyManager : MonoBehaviour
         {
             newEnemyList.Add(fastEnemy);
         }
+
+        for (int i = 0; i < currentWave.tankyEnemy; i++)
+        {
+            newEnemyList.Add(tankyEnemy);
+        }
+
         return newEnemyList;
     }
 }
