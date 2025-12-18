@@ -234,7 +234,7 @@ MonoBehaviour:
   towerBody: {fileID: 0}
   gunPoint: {fileID: 6306803821022426109}
   rotationSpeed: 10
-  attackRange: 3
+  attackRange: 4
   rangeOrigin: {fileID: 8552380249025283201}
   whatIsEnemy:
     serializedVersion: 2
