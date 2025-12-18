@@ -86,14 +86,14 @@ public class UI_BuildButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return;
         }
 
-        BuildSlot slotToUse = buildManager.getSelectedSlot();
+        BuildSlot slotToUse = buildManager.GetSelectedSlot();
         buildManager.CancelBuildAction();
         slotToUse.SnapToDefaultPositionImmediately();
         slotToUse.SetSlotAvailableTo(false); // prevent from building towers on top of already used tile
         ui.buildButtonsUI.SetLastSelected(null);
-        cameraEffects.ScreenShake(.15f, .02f);
+        cameraEffects.ScreenshakeFX(.15f, .02f);
     
-        gameObject newTower = Instantiate(towerToBuild,slotToUse.GetBuildPosition(towerCenterY), Quaternion.identity);
+        GameObject newTower = Instantiate(towerToBuild,slotToUse.GetBuildPosition(towerCenterY), Quaternion.identity);
     }
 // used for hovering over towers
     public void OnPointerEnter(PointerEventData eventData)

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class UI : MonoBehaviour
+public class UI1 : MonoBehaviour
 {
     [SerializeField] private GameObject[] uiElements;
 

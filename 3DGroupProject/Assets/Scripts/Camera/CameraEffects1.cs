@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraEffects : MonoBehaviour
+public class CameraEffects1 : MonoBehaviour
 {
     private CameraController camController;
     [SerializeField] private Vector3 inMenuPosition;

@@ -60,7 +60,7 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         // stop tile from moving when selected
         tileCanBeMoved = false;
 
-        ui.BuildButtonsUI.getLastSelectedButton()?.SelectButton(true);
+        ui.buildButtonsUI.GetLastSelectedButton()?.SelectButton(true);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -112,7 +112,7 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private void MoveToDefaultPosition()
     {
-        moveToDefaultCo = startCoroutine(tileAnim.MoveTile(transform, defaultPosition));
+        moveToDefaultCo = StartCoroutine(tileAnim.MoveTileCo(transform, defaultPosition));
     }
 
     public void SnapToDefaultPositionImmediately()
@@ -124,5 +124,5 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         transform.position = defaultPosition;
     }
 
-    public Vector3 GetBuildPosition(float yOffset) => defaultPosition + new Vector3(0, yOffset);
+        public Vector3 GetBuildPosition(float yOffset) => defaultPosition + new Vector3(0, yOffset);
 }

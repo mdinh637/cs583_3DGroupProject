@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Settings : MonoBehaviour
+public class UI_Settings1 : MonoBehaviour
 {
     private CameraController camController;
 

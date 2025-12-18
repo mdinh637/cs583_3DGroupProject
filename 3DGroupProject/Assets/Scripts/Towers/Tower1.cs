@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Tower : MonoBehaviour
+public class Tower1 : MonoBehaviour
 {
     public Enemy currentEnemy;
 

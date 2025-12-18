@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UI_InGame : MonoBehaviour
+public class UI_InGame1 : MonoBehaviour
 {
     private UI ui;
     private UI_Pause pauseUI;

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class CameraController : MonoBehaviour
+public class CameraController1 : MonoBehaviour
 {
     [SerializeField] private bool canControl;
     [SerializeField] private Vector3 levelCenterPoint;  //Click on center of level to find coordinates
