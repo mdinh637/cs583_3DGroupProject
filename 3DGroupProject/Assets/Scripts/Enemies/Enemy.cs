@@ -7,6 +7,7 @@ public enum EnemyType
 }
 public class Enemy : MonoBehaviour , IDamageable
 {
+    private GameManager gameManager;
     private NavMeshAgent agent;
 
     public int healthPoints = 2;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour , IDamageable
         agent.updateRotation = false;
         agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
 
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     private void Start()
@@ -92,7 +94,7 @@ public class Enemy : MonoBehaviour , IDamageable
         //destroy enemy if health points are 0 or less, mimics killing them
         if (healthPoints <= 0) 
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -116,5 +118,16 @@ public class Enemy : MonoBehaviour , IDamageable
             float distance = Vector3.Distance(waypoints[i].position, waypoints[i + 1].position);
             totalDistance += distance; //sum up total distance for all waypoints
         }
+    }
+
+    private void Die()
+    {
+        gameManager.UpdateCurrency(1);
+        Destroy(gameObject);
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }

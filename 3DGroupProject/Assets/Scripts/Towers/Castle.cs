@@ -7,7 +7,8 @@ public class Castle : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            other.GetComponent<Enemy>().DestroyEnemy();
+
             if(gameManager == null)
                 gameManager = FindAnyObjectByType<GameManager>();
 

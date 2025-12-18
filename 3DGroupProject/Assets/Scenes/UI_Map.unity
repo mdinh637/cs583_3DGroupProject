@@ -1191,7 +1191,7 @@ GameObject:
   - component: {fileID: 212196136}
   - component: {fileID: 212196135}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Currency_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3873,7 +3873,7 @@ GameObject:
   - component: {fileID: 591764326}
   - component: {fileID: 591764325}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HP_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5037,9 +5037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73457374c408bd44f899292058a454c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_InGame
-  healthPointsText: {fileID: 0}
-  currencyText: {fileID: 0}
-  waveTimerText: {fileID: 0}
+  healthPointsText: {fileID: 591764325}
+  currencyText: {fileID: 212196135}
+  waveTimerText: {fileID: 1561874810}
 --- !u!1 &938473103
 GameObject:
   m_ObjectHideFlags: 0
@@ -7647,7 +7647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   maxHp: 100
-  currentHp: 0
+  currentHp: 100
+  currency: 0
 --- !u!4 &1320905637
 Transform:
   m_ObjectHideFlags: 0
@@ -9464,7 +9465,7 @@ GameObject:
   - component: {fileID: 1561874811}
   - component: {fileID: 1561874810}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: WaveTimer_Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
