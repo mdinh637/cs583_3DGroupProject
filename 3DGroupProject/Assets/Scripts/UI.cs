@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class UI : MonoBehaviour
         }
 
         uiToEnable.SetActive(true);
+    }
+
+    public void LoadForestLevel()
+    {
+        SceneManager.LoadScene("Test Map");
     }
 
     public void ExitButton()
