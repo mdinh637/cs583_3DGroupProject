@@ -7,29 +7,30 @@ public class Tower : MonoBehaviour
 {
     public Enemy currentEnemy;
 
-    protected bool towerActive = true;
-    protected Coroutine deactivatedTowerCo;
-    protected GameObject currentEmpFx;
+    protected bool towerActive = true; //whether tower is active or deactivated
+    protected Coroutine deactivatedTowerCo; //deactivation coroutine reference
+    protected GameObject currentEmpFx; //current emp vfx reference
 
-    [SerializeField] private bool dynamicTargetChange;
-    [SerializeField] protected float attackCooldown = 1f;
-    protected float lastTimeAttacked;
+    [SerializeField] private bool dynamicTargetChange; //whether tower can change target dynamically
+    [SerializeField] protected float attackCooldown = 1f; //atk cd in seconds
+    protected float lastTimeAttacked; //time when tower last attacked
 
     [Header("Tower Setup")]
-    [SerializeField] protected Transform towerHead;
-    [SerializeField] protected Transform gunPoint;
-    [SerializeField] protected float rotationSpeed = 10f;
-    [SerializeField] protected float attackRange = 3f;
-    [SerializeField] protected Transform rangeOrigin;
-    [SerializeField] protected LayerMask whatIsEnemy;
-    [SerializeField] protected LayerMask whatIsTargetable;
-    [SerializeField] protected EnemyType enemyPriorityType = EnemyType.None;
+    [SerializeField] protected Transform towerHead; //part of tower that rotates vertically
+    [SerializeField] protected Transform towerBody; //part of tower that rotates horizontally
+    [SerializeField] protected Transform gunPoint; //point origin for where projectile fires
+    [SerializeField] protected float rotationSpeed = 10f; //speed of tower rotation twrds enemy
+    [SerializeField] protected float attackRange = 3f; //attack range of tower
+    [SerializeField] protected Transform rangeOrigin; //origin point for range calculation bc some of the transform origins arent already on ground
+    [SerializeField] protected LayerMask whatIsEnemy; //layer mask for what is considered an enemy
+    [SerializeField] protected LayerMask whatIsTargetable; //layer mask for what is considered targetable
+    [SerializeField] protected EnemyType enemyPriorityType = EnemyType.None; //type of enemy that tower prioritizes
 
-    private float targetCheckInterval = 0.1f;
-    private float lastTimeCheckedTarget;
+    private float targetCheckInterval = 0.1f; //interval to check for new target if dynamic targeting is enabled
+    private float lastTimeCheckedTarget; //last time tower checked for new target
 
     [Header("SFX Details")]
-    [SerializeField] protected AudioSource attackSfx;
+    [SerializeField] protected AudioSource attackSfx; //sfx played when tower attacks
 
     protected virtual void Awake()
     {
