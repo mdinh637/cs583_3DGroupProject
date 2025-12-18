@@ -36,7 +36,7 @@ public class BuildSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(buildSlotAvailable)
+        if(buildSlotAvailable == false)
         {
             return;
         }

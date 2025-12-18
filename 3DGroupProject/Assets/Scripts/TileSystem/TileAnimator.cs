@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TileAnimator : MonoBehaviour
 {
-    [SerializeField] private float yMovementDuration = 0.1f;
+    [SerializeField] private float yMovementDuration = .1f;
 
     [Header("Build Slot Movement")]
-    [SerializeField] private float buildSlotYOffset = 0.25f;
+    [SerializeField] private float buildSlotYOffset = .25f;
 
     public void MoveTile(Transform objectToMove, Vector3 targetPosition)
     {
