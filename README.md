@@ -1,7 +1,7 @@
 # cs583_3DGroupProject
 3D tower defense game for cs583
 Game Title: KingdomFell
-Group Members: Michael D, Nathan F, Nicholas S, Clinton C
+Group Members: Michael Dinh, Nathan Fermo, Nicholas S, Clinton Dela Cruz
 
 Current Direction of Game: A 3D tower defense game with 3-4 varying maps that will have some different mechanics across each map (currently testing with a test map to get the basics down, will most likely be kept as the tutorial). Forest Map (easiest of the three with the standard line of enemy evolutions, such as basic skeletons that have different variance that will indicate their amount of hp, fast but frail ones, tanky but slow ones, magic resist ones, physical resist ones, invis/camo ones, potentially etc), Winter Map (includes all the forest map ones, freeze/stun/slow mechanic inflicted on turrets (ie. reduce atk speed or maybe reduce turret range to 0 to stimulate stun/freeze for a set duration), potentially destroy turrets/game objects), River Map (same as forest mobs, flying enemies that can only be targeted by certain turrets (ie. archer and ballistic tower), projectile destroying ones, potentially etc).
 Current turrets (from assets/prefabs) include archer tower, ballista tower, cannon tower, poison tower, and wizard tower.
@@ -12,7 +12,7 @@ Poison tower - Damage over time per hit, moderate range, cc abilities, magic dam
 Wizard tower - Targets ground with a chance to target air at later stages, moderate range and magic damage. Upgrades might include chaining targets with a possibility to hit air through the chain, range increase slightly with each upgrade, damage increase at some stages, increased chain.
 
 General Goals:
-Michael Dinh - Programmer, level design, asset implementation
-Nathan F - Asset creation, animation
-Nicholas S - Asset creation
-Clinton D - Programmer, level design
+Michael Dinh - Programmer, level design, asset implementation, turret design, turret functions, interactions with enemies, on click interactions with map
+Nathan F - Asset creation, animation, enemies, core spawn function
+Nicholas S - Asset creation, UI creator, Camera control movement
+Clinton D - Programmer, level design, enemies, core spawn function
